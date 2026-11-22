@@ -1,0 +1,130 @@
+﻿
+====================================================================================================
+A. The 4 (x) 4 example of SBHCB Sec. IV.B.1:  M[1,1,1,0] = (4/3) 1 - W[1,1,1,0]
+====================================================================================================
+   <psi*|W[1,1,1,0]|psi*> = 3/2,   <psi*|(4/3)1 - W|psi*> = -1/6
+  [PASS] exact: <W[1,1,1,0]> = 3/2 on the product state (|0>+|2>)(|0>-|2>)/2
+  [PASS] exact: M[1,1,1,0] = (4/3)1 - W[1,1,1,0] has expectation -1/6 < 0 on a product state
+   spectrum of P: {'2': 1, '0': 15}   spectrum of Q: {'0': 6, '1 - sqrt(2)/2': 4, 'sqrt(2)/2 + 1': 4, '1': 2}
+  [PASS] exact: (3/2)1 - W[1,1,1,0] = P + Q^Gamma with P = 2|phi+><phi+|
+  [PASS] exact: P >= 0 and Q >= 0 (all eigenvalues non-negative)
+  [PASS] numerical maximum of <ef|W[1,1,1,0]|ef> over product states = 1.500000000 (= 3/2)
+  [PASS] numerical minimum over product states = -4.44e-16 (W is block positive)
+  [PASS] (3/2)1 - W[1,1,1,0] is not PSD (lambda_min = -0.500): a decomposable witness
+   Monte Carlo (400000 Haar-random product states, fixed seed): fraction with <(4/3)1 - W> < 0 = 0.00003; largest sampled <W> = 1.3847
+  [PASS] a set of product states of positive measure violates the printed mirror
+   Tr[((4/3)1-W) rho_x] = 4*(x - 4)*(x - 1)/(3*x);   Tr[((3/2)1-W) rho_x] = 2*(x**2 - 2*x + 3)/x
+  [PASS] with 4/3 the (unnormalised) value is 4(x^2-5x+4)/(3x), as printed in SBHCB
+  [PASS] with the correct constant 3/2 it is 2(x^2-2x+3)/x > 0: rho_x is not detected
+  [PASS] rho_x of SBHCB (75) is positive and PPT for the sampled x
+
+====================================================================================================
+B1. Theorem 1 (certificate) and Theorem 2 (closed form of u_W) for arbitrary real (a,b,c,d)
+====================================================================================================
+  [PASS] 300 random (a,b,c,d): L*1 - W = P + Q^Gamma with P, Q >= 0 (worst violation 1.4e-15)
+  [PASS] 300 random (a,b,c,d): L is attained by an explicit product state (worst gap 1.3e-15)
+  [PASS] 120 random (a,b,c,d): numerical product-state maximum equals the closed form L (worst gap 2.0e-07, tolerance 1e-5)
+  [PASS] symbolic: antipodal family gives (a+c+1)/2
+  [PASS] symbolic: adjacent family gives 2(a+1)t(1-t) + b t^2 + d (1-t)^2
+
+====================================================================================================
+B2. The two classes of SBHCB (73): exact u_W and the nature of the mirrored operator
+====================================================================================================
+  [PASS] class I satisfies SBHCB (73): a+b+c+d = a^2+b^2+c^2+d^2 = 3, ac+bd = 1, (a+c)(b+d) = 2
+  [PASS] class I: (a+c+1)/2 = 3/2 identically
+  [PASS] class I, 721 values of theta in [0, 2pi]: closed form gives u_W = 3/2
+  [PASS] class I, same grid: (3/2)1 - W = 2(1+sin theta)|phi+><phi+| + Q^Gamma with Q >= 0
+  [PASS] class I, 25 values of theta: numerical product-state maximum = 3/2 (worst deviation 2.8e-14)
+  [PASS] class I: (3/2)1 - W is PSD only at theta = pi/2; otherwise it is a decomposable witness
+  [PASS] class II satisfies SBHCB (73)
+  [PASS] class II: the adjacent-family value ((a+1)^2 - bd)/(2(a+1)-b-d) equals 3/2 identically
+  [PASS] class II: u_W = 3/2 for theta in [0, pi/2] and u_W = d = lambda_max(W) for theta in [pi/2, pi]
+  [PASS] class II, 13 values of theta: numerical product-state maximum = closed form (worst deviation 6.7e-07, tolerance 1e-5)
+  [PASS] class I: W(theta) detects a PPT state (is non-decomposable) for the sampled theta != pi/2
+  [PASS] class I: W(pi/2) = W[1/2,1/2,3/2,1/2] = P + Q^Gamma with P, Q >= 0 (decomposable, as stated in SBHCB)
+
+====================================================================================================
+B3. The 3 (x) 3 family SBHCB (70)-(71): closed form, the constant 4/3 and Proposition 6
+====================================================================================================
+  [PASS] Choi witness W[1,1,0]: u_W = 4/3 (closed form and numerics)
+  [PASS] 4 (x) 4, W[1,1,1,0]: product vectors supported on two adjacent levels reach at most 4/3
+  [PASS] 3 (x) 3 family: numerical product-state maximum equals the closed form
+  [PASS] 3 (x) 3 family: u_W*1 - W = P + Q^Gamma with P, Q >= 0 (mirror never non-decomposable)
+  [PASS] SBHCB Proposition 6: the mirror at mu = u_W is PSD iff a <= 1/3, a decomposable witness otherwise
+
+====================================================================================================
+B4. Arbitrary dimension n: closed form, certificate and attaining product vectors (Theorems 2 and 3)
+====================================================================================================
+  [PASS] n = 4 and n = 3: the general formula reduces to L4 and L3
+  [PASS] n=2: 150 random alpha: L*1 - W = P + Q^Gamma with P, Q >= 0 (worst violation 1.8e-15); L attained on a two-level product vector (worst gap 1.8e-15); lambda_max formula (gap 4.4e-16)
+  [PASS] n=3: 150 random alpha: L*1 - W = P + Q^Gamma with P, Q >= 0 (worst violation 8.2e-16); L attained on a two-level product vector (worst gap 8.9e-16); lambda_max formula (gap 2.7e-15)
+  [PASS] n=4: 150 random alpha: L*1 - W = P + Q^Gamma with P, Q >= 0 (worst violation 3.3e-15); L attained on a two-level product vector (worst gap 2.7e-15); lambda_max formula (gap 3.6e-15)
+  [PASS] n=5: 150 random alpha: L*1 - W = P + Q^Gamma with P, Q >= 0 (worst violation 8.9e-16); L attained on a two-level product vector (worst gap 8.9e-16); lambda_max formula (gap 2.7e-15)
+  [PASS] n=6: 150 random alpha: L*1 - W = P + Q^Gamma with P, Q >= 0 (worst violation 1.4e-15); L attained on a two-level product vector (worst gap 1.8e-15); lambda_max formula (gap 2.7e-15)
+  [PASS] n=7: 150 random alpha: L*1 - W = P + Q^Gamma with P, Q >= 0 (worst violation 2.9e-15); L attained on a two-level product vector (worst gap 2.2e-15); lambda_max formula (gap 4.4e-15)
+  [PASS] n=8: 150 random alpha: L*1 - W = P + Q^Gamma with P, Q >= 0 (worst violation 2.1e-15); L attained on a two-level product vector (worst gap 1.8e-15); lambda_max formula (gap 5.3e-15)
+  [PASS] n=2: numerical product-state maximum equals the closed form for 12 random alpha (worst gap 8.9e-16, tolerance 1e-5)
+  [PASS] n=5: numerical product-state maximum equals the closed form for 12 random alpha (worst gap 3.1e-15, tolerance 1e-5)
+  [PASS] n=6: numerical product-state maximum equals the closed form for 10 random alpha (worst gap 3.3e-15, tolerance 1e-5)
+  [PASS] n=7: numerical product-state maximum equals the closed form for 6 random alpha (worst gap 1.8e-15, tolerance 1e-5)
+   u_W of the Choi-type witness W[1,...,1,0] in dimension n: {3: 1.333333, 4: 1.5, 5: 1.5, 6: 1.5, 7: 1.5, 8: 1.5, 9: 1.5}
+  [PASS] Choi-type witness W[1,...,1,0]: u_W = 4/3 for n = 3 and u_W = 3/2 for every n >= 4
+
+====================================================================================================
+C1. The 3 (x) 3 pair of SBHCB (77)-(78)
+====================================================================================================
+  [PASS] SBHCB (77): W + M = 4*1 for the printed matrices
+  [PASS] (77): both operators are block positive numerically (minima -1.8e-15, -8.9e-16)
+  [PASS] (77): rho_W and rho_M are PPT states with Tr[W rho_W] = Tr[M rho_M] = -2/5 (non-decomposable pair)
+  [PASS] (78): U is unitary and M = (U (x) U*) W (U (x) U*)^dagger
+
+====================================================================================================
+C2. SBHCB Sec. V: generalised mirroring with a Weyl operator (class II)
+====================================================================================================
+   per-site trace with rho_x of (75): 3*a + b*x + c + d/x + 3;   with diag (1,x,1,1/x), off-diagonal +1: a + b*x + c + d/x - 3
+  [PASS] the printed formula a + bx + c + d/x - 3 holds for the state with diagonal (1,x,1,1/x) and off-diagonal +1, not for rho_x of (75)
+  [PASS] that state is positive and PPT
+
+====================================================================================================
+C3. Multipartite part of SBHCB (Sec. III): GHZ witnesses and the three-qubit pair
+====================================================================================================
+  [PASS] n=3: canonical pair as printed, W_c + |GHZ><GHZ|, is not a multiple of the identity (it is for mu_c*1 - W_c = |GHZ><GHZ|/(2^(n-1)-1))
+  [PASS] n=3: alternative pair W_a + M_a = 2^(1-n)*1
+  [PASS] n=3: sum of generators over product states lies in [-(n-1), n-1] (numerics: [-2.000000, 2.000000])
+  [PASS] n=3: ||W_a||_op = (2n-1)/((n-1)2^n) = 0.31250, not n/((n-1)2^n) = 0.18750 as in SBHCB (50)
+  [PASS] n=3: Tr[W_a GHZ] = -1/((n-1)2^n); hence |Tr|/(2||W||) = 1/(2(2n-1)), not 1/(2n) [SBHCB (49)]
+  [PASS] n=3: W_2m + M_2m as printed is not a multiple of the identity; (2^n-2)W_2m + (2^n+2)M_2m = 2*1
+  [PASS] n=3: M_a detects the state of SBHCB (40) with Tr = -1/((n-1)2^n)
+  [PASS] n=3: the printed local unitary 1(x)Y(x)1(x)Y... maps W_a to M_a: True (it does so iff the number floor(n/2) of Y factors is odd)
+  [PASS] n=4: canonical pair as printed, W_c + |GHZ><GHZ|, is not a multiple of the identity (it is for mu_c*1 - W_c = |GHZ><GHZ|/(2^(n-1)-1))
+  [PASS] n=4: alternative pair W_a + M_a = 2^(1-n)*1
+  [PASS] n=4: sum of generators over product states lies in [-(n-1), n-1] (numerics: [-3.000000, 3.000000])
+  [PASS] n=4: ||W_a||_op = (2n-1)/((n-1)2^n) = 0.14583, not n/((n-1)2^n) = 0.08333 as in SBHCB (50)
+  [PASS] n=4: Tr[W_a GHZ] = -1/((n-1)2^n); hence |Tr|/(2||W||) = 1/(2(2n-1)), not 1/(2n) [SBHCB (49)]
+  [PASS] n=4: W_2m + M_2m as printed is not a multiple of the identity; (2^n-2)W_2m + (2^n+2)M_2m = 2*1
+  [PASS] n=4: M_a detects the state of SBHCB (40) with Tr = -1/((n-1)2^n)
+  [PASS] n=4: the printed local unitary 1(x)Y(x)1(x)Y... maps W_a to M_a: False (it does so iff the number floor(n/2) of Y factors is odd)
+  [PASS] n=4: Z(x)Y(x)1(x)Y... does map W_a to M_a
+  [PASS] n=5: the printed local unitary flips the sign of all generators: False (iff floor(n/2) is odd)
+  [PASS] n=6: the printed local unitary flips the sign of all generators: True (iff floor(n/2) is odd)
+  [PASS] three-qubit W[i1,i2,i3]: W + M = 2*1, M = YYY W YYY, ||W||_op = 1 + sqrt(17) for all eight sign choices
+  [PASS] three-qubit W[i1,i2,i3]: non-negative on product states (numerical minimum 0) for all eight sign choices
+  [PASS] rho(x,y,z) of SBHCB is positive and PPT across all three cuts
+  [PASS] the printed value 2(x+y+1/z-3)/nu is Tr[W[0,1,1] rho(x,y,z)]; no other label of (60) reproduces it
+  [PASS] for the label W[0,1,0] named in SBHCB, (60) as printed gives 2(x+y+1/z+1)/nu > 0
+  [PASS] rho(b,c) of SBHCB is positive and PPT across all three cuts for the sampled bc >= 1
+  [PASS] for (60) and rho(b,c) as printed, Tr[W[1,1,0] rho(b,c)] = 2(c+7)/(b+c+6) > 0
+  [PASS] no label of (60) gives the printed 2(c-3)/(b+c+6); the smallest value over the eight labels is 2(c-1)/(b+c+6)
+
+====================================================================================================
+D. A non-decomposable mirrored pair in 4 (x) 4 by embedding the 3 (x) 3 pair (Proposition 4)
+====================================================================================================
+  [PASS] W4 + M4 = 4*1 on C^4 (x) C^4
+  [PASS] W4 and M4 are block positive (numerical minima over product states -1.3e-15, -1.3e-15)
+  [PASS] the embedded states are PPT and Tr[W4 rho_W] = Tr[M4 rho_M] = -2/5: both witnesses are non-decomposable
+  [PASS] neither W4 nor M4 is PSD
+
+====================================================================================================
+SUMMARY
+====================================================================================================
+  83 / 83 checks passed;  runtime 84.1 s
